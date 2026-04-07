@@ -353,6 +353,31 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Connector */}
+      <section id="connector" className="w-full bg-light-gray">
+        <div className="max-w-3xl mx-auto px-6 py-20 md:py-28 text-center">
+          <h2 className="text-2xl md:text-3xl font-semibold text-deep-blue mb-4">
+            Get the Age in Place connector
+          </h2>
+          <p className="text-warm-gray text-lg mb-8 max-w-xl mx-auto">
+            Add the SolvingHealth connector to Claude and get instant access to care tools, HSA savings estimates, and aging-in-place resources.
+          </p>
+          <div className="bg-white rounded-xl border border-deep-blue/10 p-6 text-left max-w-lg mx-auto mb-8">
+            <p className="text-xs font-medium text-warm-gray uppercase tracking-wider mb-3">Claude Desktop MCP Config</p>
+            <pre className="text-sm text-deep-blue overflow-x-auto whitespace-pre font-mono leading-relaxed">{`"ageinplace": {
+  "command": "npx",
+  "args": ["-y", "@anthropic-ai/mcp-remote",
+    "https://solvinghealth.com/mcp"]
+}`}</pre>
+          </div>
+          <p className="text-warm-gray text-sm">
+            Don&apos;t have Claude? Get it free at{" "}
+            <a href="https://claude.ai" target="_blank" rel="noopener noreferrer" className="text-sky-blue font-medium hover:underline">claude.ai</a>
+            {" "}or use the chat and voice widgets on this page.
+          </p>
+        </div>
+      </section>
+
       {/* Footer */}
       <footer className="w-full border-t border-deep-blue/10 bg-cream">
         <div className="max-w-5xl mx-auto px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
