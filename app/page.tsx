@@ -116,20 +116,42 @@ const coverageItems = [
   },
 ];
 
+async function submitWaitlist(email: string, source: string): Promise<void> {
+  try {
+    await fetch("https://api.solvinghealth.com/waitlist", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, product: "careho.me", source }),
+    });
+  } catch {
+    // fail silently — show confirmation regardless
+  }
+}
+
 export default function Home() {
   const [heroEmail, setHeroEmail] = useState("");
   const [ctaEmail, setCtaEmail] = useState("");
   const [heroSubmitted, setHeroSubmitted] = useState(false);
   const [ctaSubmitted, setCtaSubmitted] = useState(false);
+  const [heroSubmitting, setHeroSubmitting] = useState(false);
+  const [ctaSubmitting, setCtaSubmitting] = useState(false);
 
-  function handleHeroSubmit(e: React.FormEvent) {
+  async function handleHeroSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (heroEmail) setHeroSubmitted(true);
+    if (!heroEmail || heroSubmitting) return;
+    setHeroSubmitting(true);
+    await submitWaitlist(heroEmail, "hero-form");
+    setHeroSubmitted(true);
+    setHeroSubmitting(false);
   }
 
-  function handleCtaSubmit(e: React.FormEvent) {
+  async function handleCtaSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (ctaEmail) setCtaSubmitted(true);
+    if (!ctaEmail || ctaSubmitting) return;
+    setCtaSubmitting(true);
+    await submitWaitlist(ctaEmail, "cta-form");
+    setCtaSubmitted(true);
+    setCtaSubmitting(false);
   }
 
   return (
@@ -186,9 +208,10 @@ export default function Home() {
               />
               <button
                 type="submit"
-                className="rounded-lg bg-sky-blue px-6 py-3 text-white font-medium hover:bg-sky-blue/90 transition-colors cursor-pointer"
+                disabled={heroSubmitting}
+                className="rounded-lg bg-sky-blue px-6 py-3 text-white font-medium hover:bg-sky-blue/90 transition-colors cursor-pointer disabled:opacity-60 whitespace-nowrap"
               >
-                Get notified
+                {heroSubmitting ? "Joining..." : "Get notified"}
               </button>
             </form>
           )}
@@ -317,7 +340,7 @@ export default function Home() {
       <section className="w-full bg-deep-blue text-white">
         <div className="max-w-2xl mx-auto px-6 py-20 md:py-28 text-center">
           <span className="inline-flex items-center rounded-full bg-white/10 px-4 py-1.5 text-sm font-medium text-white/90 mb-6">
-            Coming 2027
+            Coming 2027 — Subject to regulatory approval
           </span>
           <h2 className="text-2xl md:text-3xl font-semibold mb-4">
             Get notified when enrollment opens
@@ -344,36 +367,29 @@ export default function Home() {
               />
               <button
                 type="submit"
-                className="rounded-lg bg-sky-blue px-6 py-3 text-white font-medium hover:bg-sky-blue/90 transition-colors cursor-pointer"
+                disabled={ctaSubmitting}
+                className="rounded-lg bg-sky-blue px-6 py-3 text-white font-medium hover:bg-sky-blue/90 transition-colors cursor-pointer disabled:opacity-60 whitespace-nowrap"
               >
-                Get notified
+                {ctaSubmitting ? "Joining..." : "Get notified"}
               </button>
             </form>
           )}
         </div>
       </section>
 
-      {/* Connector */}
-      <section id="connector" className="w-full bg-light-gray">
-        <div className="max-w-3xl mx-auto px-6 py-20 md:py-28 text-center">
-          <h2 className="text-2xl md:text-3xl font-semibold text-deep-blue mb-4">
-            Get the Age in Place connector
-          </h2>
-          <p className="text-warm-gray text-lg mb-8 max-w-xl mx-auto">
-            Add the SolvingHealth connector to Claude and get instant access to care tools, HSA savings estimates, and aging-in-place resources.
-          </p>
-          <div className="bg-white rounded-xl border border-deep-blue/10 p-6 text-left max-w-lg mx-auto mb-8">
-            <p className="text-xs font-medium text-warm-gray uppercase tracking-wider mb-3">Claude Desktop MCP Config</p>
-            <pre className="text-sm text-deep-blue overflow-x-auto whitespace-pre font-mono leading-relaxed">{`"ageinplace": {
-  "command": "npx",
-  "args": ["-y", "@anthropic-ai/mcp-remote",
-    "https://solvinghealth.com/mcp"]
-}`}</pre>
-          </div>
-          <p className="text-warm-gray text-sm">
-            Don&apos;t have Claude? Get it free at{" "}
-            <a href="https://claude.ai" target="_blank" rel="noopener noreferrer" className="text-sky-blue font-medium hover:underline">claude.ai</a>
-            {" "}or use the chat and voice widgets on this page.
+      {/* Disclaimer */}
+      <section className="w-full bg-light-gray">
+        <div className="max-w-3xl mx-auto px-6 py-12">
+          <p className="text-warm-gray text-xs leading-relaxed">
+            <strong className="text-deep-blue">Regulatory disclaimer:</strong> careho.me is a pre-launch
+            insurance product concept under development. No insurance products are currently
+            available for purchase or enrollment. All described benefits are subject to state
+            regulatory approval prior to offering. Insurance products are regulated by state
+            insurance departments and must be approved before sale. Joining this waitlist does
+            not create a contract, coverage, or any insurance obligation. co-op.care Technologies
+            LLC is not a licensed insurance company. Any future insurance product will be
+            underwritten by a licensed insurance carrier. The 2027 launch timeline is an estimate
+            and is contingent on successful regulatory filings and carrier partnerships.
           </p>
         </div>
       </section>
