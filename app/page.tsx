@@ -247,6 +247,115 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Cost comparison — populated demo */}
+      <section className="w-full bg-white">
+        <div className="max-w-5xl mx-auto px-6 py-20 md:py-28">
+          <h2 className="text-2xl md:text-3xl font-semibold text-deep-blue mb-4 text-center">
+            What a year of care actually costs
+          </h2>
+          <p className="text-warm-gray text-center mb-12 text-lg max-w-2xl mx-auto">
+            For a 78-year-old in Boulder, Colorado who needs help with bathing,
+            meals, and medication reminders. Same person, same needs, two paths.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Nursing home column */}
+            <div className="rounded-xl p-8 border border-deep-blue/10 bg-cream">
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="font-semibold text-deep-blue text-lg">
+                  Nursing home
+                </h3>
+                <span className="text-xs text-warm-gray uppercase tracking-wide">
+                  Genworth 2024
+                </span>
+              </div>
+              <div className="space-y-3 text-sm text-warm-gray mb-6">
+                <div className="flex justify-between border-b border-deep-blue/5 pb-2">
+                  <span>Semi-private room</span>
+                  <span className="text-deep-blue font-medium">$104,025</span>
+                </div>
+                <div className="flex justify-between border-b border-deep-blue/5 pb-2">
+                  <span>Personal items, transport</span>
+                  <span className="text-deep-blue font-medium">$2,400</span>
+                </div>
+                <div className="flex justify-between border-b border-deep-blue/5 pb-2">
+                  <span>Family travel to visit</span>
+                  <span className="text-deep-blue font-medium">$1,800</span>
+                </div>
+                <div className="flex justify-between pb-2">
+                  <span>Lost home equity (sale)</span>
+                  <span className="text-deep-blue font-medium">Variable</span>
+                </div>
+              </div>
+              <div className="border-t border-deep-blue/10 pt-4">
+                <div className="flex justify-between items-baseline mb-1">
+                  <span className="text-warm-gray text-sm">Annual cost</span>
+                  <span className="text-deep-blue text-3xl font-semibold">
+                    $108,225
+                  </span>
+                </div>
+                <p className="text-xs text-warm-gray italic">
+                  You leave the house. Most never come back.
+                </p>
+              </div>
+            </div>
+
+            {/* Age in place column */}
+            <div className="rounded-xl p-8 border-2 border-sky-blue bg-deep-blue text-white relative">
+              <span className="absolute -top-3 left-8 inline-flex items-center rounded-full bg-sky-blue px-3 py-1 text-xs font-semibold text-white">
+                With co-op.care
+              </span>
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="font-semibold text-lg">
+                  Age in Place at home
+                </h3>
+                <span className="text-xs text-white/60 uppercase tracking-wide">
+                  Boulder pilot
+                </span>
+              </div>
+              <div className="space-y-3 text-sm text-white/80 mb-6">
+                <div className="flex justify-between border-b border-white/10 pb-2">
+                  <span>20 hrs/wk W-2 caregiver</span>
+                  <span className="font-medium text-white">$28,600</span>
+                </div>
+                <div className="flex justify-between border-b border-white/10 pb-2">
+                  <span>Home modifications (one-time)</span>
+                  <span className="font-medium text-white">$3,200</span>
+                </div>
+                <div className="flex justify-between border-b border-white/10 pb-2">
+                  <span>Smart monitoring + meals</span>
+                  <span className="font-medium text-white">$4,800</span>
+                </div>
+                <div className="flex justify-between pb-2">
+                  <span>co-op.care membership</span>
+                  <span className="font-medium text-white">$708</span>
+                </div>
+              </div>
+              <div className="border-t border-white/20 pt-4">
+                <div className="flex justify-between items-baseline mb-1">
+                  <span className="text-white/70 text-sm">Annual cost</span>
+                  <span className="text-3xl font-semibold">$37,308</span>
+                </div>
+                <p className="text-xs text-sky-blue italic">
+                  You stay home. Your family stays close.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Savings call-out */}
+          <div className="mt-8 max-w-2xl mx-auto text-center">
+            <p className="text-warm-gray text-base leading-relaxed">
+              <span className="text-deep-blue font-semibold text-xl">
+                $70,917 saved per year
+              </span>
+              <br />
+              That is what Age in Place Insurance is built to unlock — and to
+              keep stable when needs change.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* What it covers */}
       <section className="w-full bg-light-gray">
         <div className="max-w-4xl mx-auto px-6 py-20 md:py-28">
